@@ -1,0 +1,51 @@
+ <!doctype html>
+  <html>
+   <head>
+     <title>Getting Started</title>
+     <style>
+        body{
+            font-family: "Arial";
+        }
+        th,
+        td {
+            border: 1px solid;
+        }
+        .con{
+            display: flex;
+        }
+        .con > div:nth-child(1){
+            width:60%;
+        }
+        .con > div:nth-child(2){
+            width:20%;
+        }
+        input{
+            display: block;
+        }
+    </style>
+   </head>
+   <body>
+   <h2>Empleados</h2>
+    <div class="con">
+        <div>
+            <table id="tabla">
+            </table>
+        </div>
+        <div>
+          <label for="name">Name</label>
+            <input type="text" id="name">
+            <label for="email">Email</label>
+            <input type="text" id="email">
+            <label for="gender">Gender</label>
+            <input type="text" id="gender">
+            <label for="phone">Phone</label>
+            <input type="text" id="phone">
+            <label for="cell">Cell</label>
+            <input type="text" id="cell">
+            <br>
+            <button type="button" id="add">Agregar</button>
+        </div>
+    </div>
+    <script src="bundle.js"></script>
+   </body>
+  </html>
