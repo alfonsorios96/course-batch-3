@@ -1,3 +1,4 @@
+'use strict';
 // Dislpay contents using the selected lng
 const displayContent = (content) => {
 
