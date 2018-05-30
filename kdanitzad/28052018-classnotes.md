@@ -1,77 +1,68 @@
-***
-var boo = ''; //ES5
-
-"use strict"
-const boo = ''; //ES6
-let boo = '';
+OOP en Javascripts
 ***
 
-function helo (){
-	//@TODO
-};
+import { <Name> } from '<name>'
 
-const hello = () =>{
-	
-};
+class <Name> {
+    constructor(){
 
-***
-
->ECMAScript (estandar) 6
->Javascript (lenguaje) 2015
-
-# Buena practica
-**Declarar todo como const y solo en caso especial de que se vea que si debe cambiar el valor entonces cambiar a let.**
-
-### ES6 permite inicializar previo a lo que desarrolla la funcion
-const hello = (name = ' ' ) =>{
-	console.log(name);
-};
-
-Type coercion || Tipado dinámico || Evitar practica
-====
-***
-Caso automatico dinamico cuando a las variables de js no se la un valor estricto
-return name ? name : '';
-return name || '';
-
->al declarar algo como
-let option = 0; --> se tomará como False.
-if(){
-}
-else{
+    }
 }
 
-== dispara el type coercion , solo importa el valor y no el tipo de dato
-=== obliga a que se busque su identico (tipo y valor)
+export { <Name> };
 
-if else -> para 2 opciones
-switch --> mas de dos opciones
+===
 
-Ciclos
-***
+ES6 Again
 
-[Mas informacion al respecto y uso de for of y for in](https://codeburst.io/foreach-vs-for-of-vs-for-in-tug-of-for-d8f935396648)
+function User(name) {
+    this.name = name;
+}
+
+User.prototype.getFullName = function() {
+    return this.name + ' ' + this.lastName;
+};
+
+User.staticMethod = function() {
+    return 'Holi';
+};
+
+//
+
+class User {
+    constructor(name) {
+        this.name = name;
+    }
+
+    getFullName() {
+        return this.name + ' ' + this.lastName;
+    }
+
+    static staticMethod() {
+        return 'Holi';
+    }
+}
+
+const user = User.staticMethod();
+
+destructuracion de objetos
+
+Promesas
+Ejecuciones en forma paralela acorde a la secuencia del programa
+Son asincronas pero el contenido es sincrono
+Cuando solo se recibe un parametro, se omiten o parentesisi y directamente 
+
+response => {
+	//to do ...
+}
+
+reponse => response.json();  // el return es implicito 
+
+Sintaxis
+Se puede anidar el then despues de un then siempre y cuando ESTE devuelva/return algo y se vuelve el parametro del siguiente then
 
 
-
->let array = [1,2,3];
->for(const index in array){
->console.log(index);
->}
->Itera indices, para objetos
-
->for(const iterable of array){
->console.log(iterable); // 1,2,3
->}
->Itera valores, para estructuras de datos (listas, >arreglos)
-
-#### Lenguaje de prototipado, todo es un objeto excepto los nativos
-
-> No todos los tipos de datos son enumerables
-> propiedades enumerables son aquellas que tienen propiedad a poder ser establecida por true por defecto o por medio de un inicializador
-
-> **destructurar un dato (sus propiedades)**, como un mapa - llave valor -
-se puede usar el key & value de forma separada, no solo en su totalidad "entry"
-
-
-
+promise()
+.then(response => response.json())
+.then(json => )
+.catch(error =>)
