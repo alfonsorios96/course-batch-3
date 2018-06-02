@@ -1,0 +1,80 @@
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="index.css">
+</head>
+<body>
+	<p id="algo">Informacion random de users</p>
+	<table id="mytable">
+		<tr>
+		<th id="email">Email</th>
+		</tr>
+		<tr>
+		<th id="gender">Email</th>
+		</tr>
+		<tr>
+		<th id="cell">Email</th>
+		</tr>
+	</table>
+
+	<div id="container">
+	<div id="modal">
+		<h1 id="modal_title"></h1>
+		<p id="modal_body"></p>
+		<p id="modal_footer"></p>
+		<button id="cerrar">Cerrar</button>
+	</div>
+	</div>
+</body>
+<script type="text/javascript">
+	'use strict';
+	
+	fetch('https://randomuser.me/api/')
+  	.then((response) =>  response.json() )
+   	.then((myjson) => { myfunction(myjson)
+  		
+  })
+  .catch(() => {
+  		const m = 'No es posible desplegar informcion'
+  		displayModal(m);
+  });
+
+
+  const myfunction = (response) =>{
+  		const column = document.getElementById('email');
+  		const c2 = document.getElementById('gender');
+  		const c3 = document.getElementById('cell');
+  		console.log(response.results[0].email);
+  		column.innerHTML = response.results[0].email;
+  		c2.innerHTML = response.results[0].gender;
+  		c3.innerHTML = response.results[0].cell;
+
+  }
+
+
+  const displayModal = (message) => {
+	const container = document.getElementById('container');
+	const modal = document.getElementById('modal');
+	const link = document.getElementById('modal_link');
+	const mt = document.getElementById('modal_title');
+	const mb= document.getElementById('modal_body');
+	const mf = document.getElementById('modal_footer');
+	const cerrar = document.getElementById('cerrar');
+
+	mt.innerHTML = ':: Aviso ::';
+	mb.innerHTML = '' + message;
+	mf.innerHTML = 'Pulse el boton cerrar para Salir';
+
+        container.style.display = "block" ;
+        modal.style.display = "block" ;
+        mt.style.display = "block" ;
+        mb.style.display = "block" ; 
+        mf.style.display = "block" ;
+    
+
+    cerrar.addEventListener('click', () => {
+        container.style.display = "none" ;
+        modal.style.display = "none" ;
+    });
+};
+</script>
+</html>

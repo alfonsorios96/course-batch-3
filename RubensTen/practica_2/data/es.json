@@ -1,0 +1,31 @@
+{
+    "header": {
+        "title": "Titulo del Blog",
+        "menu": [
+            {"name": "Inicio", "url": "google.com"},
+            {"name": "Acerca de", "url": "google.com"},
+            {"name": "Post", "url": "google.com"},
+            {"name": "Contacto", "url": "google.com"}
+        ]
+    },
+    "postList": [
+        {
+            "title": "Publicacion 1",
+            "description": "Descripcion de publicacion uno",
+            "link": {"text": "Ver más", "ref": "google.com"}
+        },
+        {
+            "title": "Publicacion 2",
+            "description": "Descripcion de publicacion dos",
+            "link": {"text": "Ver más", "ref": "google.com"}
+        },
+        {
+            "title": "Publicacion 3",
+            "description": "Descripcion de publicacion tres",
+            "link": {"text": "Ver más", "ref": "google.com"}
+        }
+    ],
+    "footer": {
+        "content": "Contenido del Footer"
+    }
+}

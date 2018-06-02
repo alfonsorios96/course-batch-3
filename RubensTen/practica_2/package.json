@@ -1,0 +1,19 @@
+{
+  "name": "practica_dos",
+  "version": "1.0.0",
+  "description": "Blog con internacinalización",
+  "scripts": {
+    "start": "npm run concurrently-serve",
+    "concurrently-serve": "concurrently \"http-server -a localhost -p 3000\" \"open http://localhost:3000/\"",
+    "build": "babel src -d lib"
+  },
+  "author": "Rubén",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "concurrently": "^3.5.1",
+    "http-server": "^0.11.1"
+  }
+}
