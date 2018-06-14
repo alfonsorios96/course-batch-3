@@ -1,10 +1,23 @@
 #!/usr/bin/env node
 
-'use strict';
+
+const Main = require('../lib/bundle.js');
 
 
-const Jobs = require('../lib/bundle.js');
+const argv = require('yargs')
+    .command('parse [name]', 'Parse HTML & CSS file', (yargs) => {
+        yargs.positional('name', {
+            type: 'string',
+            default: 'Template'
+        })
+    }, function (argv) {
 
-let j = new Jobs();
+        console.log('Start parsing', argv.name, '...');
+        
+        new Main(argv.name);
 
-j.run();
+    })
+    .help('h')
+    .alias('h', 'help')
+    .epilogue('For more information, find the documentation at https://buuuuu.com.mx')
+    .argv;

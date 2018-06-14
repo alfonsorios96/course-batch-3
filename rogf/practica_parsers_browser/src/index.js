@@ -1,60 +1,30 @@
 'use strict';
 
-import {Browser} from './Browser.js';
+import { Browser } from './Browser.js';
 
 const fs = require('fs');
 
-const init = function(filename) {
-    
-    let contents = '';
 
-    try {
+module.exports = class Main {
+
+    constructor(fileName) {
         
-        contents = fs.readFileSync(fileName, 'utf8');
+        try {
 
-        let regex = new RegExp('\n', 'g');
+            let contents = '';
+            
+            contents = fs.readFileSync(fileName, 'utf8');
 
-        let input =  contents.replace(regex);
+            let regex = new RegExp('\\n|\\t|\\r', 'g');
 
-        let browser = new Browser();
+            let input = contents.replace(regex, '');
 
-        browser.parseHTML(input);
+            let browser = new Browser();
 
-    } catch (error) {
-        throw new Error('File not found');
-    }
-};
+            browser.parseHTML(input);
 
-
-const argv = require('yargs');
-
-
-
-
-module.exports = class Jobs {
-    
-    constructor() {}
-    
-    run(){
-
-        argv.command('Parse [name]', 'Parsing ...', (yargs) => {
-        yargs.positional('name', {
-            type: 'string',
-            default: 'Template'
-        })
-    }, function (argv) {
-
-        console.log('Start', argv.name, 'Template name');
-        
-        init(argv.name);
-
-    })
-    .help('h')
-    .alias('h', 'help')
-    .epilogue('For more information, find the documentation at https://buuuuu.com.mx')
-    .argv;
-        
+        } catch (error) {
+            throw new Error('File not found');
+        }
     }
 }
-
-

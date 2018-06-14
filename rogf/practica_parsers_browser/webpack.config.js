@@ -6,7 +6,9 @@ module.exports = {
     entry: './src/index.js',
     output: {
         filename: 'bundle.js',
-        path: path.resolve(__dirname, 'lib')
+        path: path.resolve(__dirname, 'lib'),
+        library: 'library',
+        libraryTarget: 'umd'
     },
     module: {
         rules: [

@@ -37,6 +37,9 @@ class Browser {
                     name = name.replace(/>/g, '');
                     
                     let tn = new TagNode(name, TagTools.getAttrs(tag));
+                    console.log("++++++++++++++++++++++++++++++++++++++++++++++++");
+                    console.log(tn);
+                    console.log("++++++++++++++++++++++++++++++++++++++++++++++++");
                     
                     if(TagTools.isSingleton(tag)){
                                                 
@@ -68,12 +71,17 @@ class Browser {
                     this.parents.pop();
                 }
             }
-        }
-        
-        debugger
-        
+        }        
+        console.log("-------------------------------------------------------------------------------");
+        console.log("-------------------------------------------------------------------------------");
         console.log('DOM: @todo Funcion recursiva para imprimir valores de los nodos del objeto:', this.DOM);
-        console.log('CSS',this.CSSOM);
+        console.log("-------------------------------------------------------------------------------");
+        console.log("-------------------------------------------------------------------------------");
+        
+        console.log("-------------------------------------------------------------------------------");
+        console.log("-------------------------------------------------------------------------------");
+        console.log('CSS styles array:',this.CSSOM);
+        console.log("-------------------------------------------------------------------------------");
         
     }
     

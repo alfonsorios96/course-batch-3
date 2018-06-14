@@ -33,6 +33,13 @@ describe("Tags", function () {
 
         expect( TagTools.isAutoClose(tag) ).toBe( true );
     });
+    
+    it("Es Singleton", function () {
+        
+        let tag = '<meta charset="UTF-8">';
+
+        expect( TagTools.isSingleton(tag) ).toBe( true );
+    });
 
     it("Es Style (Open)", function () {
         

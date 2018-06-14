@@ -32,7 +32,7 @@ class TagTools {
     
     static isStyle(stringVal) {
         
-        var regex = new RegExp('(<\\s*style\\s*>)|(<\\s*\/\\s*style\\s*>)', 'g');
+        var regex = new RegExp('(<\\s*style\\s*(.*?)\\s*>)|(<\\s*\/\\s*style\\s*>)', 'g');
         
         return regex.test(stringVal);
     }
