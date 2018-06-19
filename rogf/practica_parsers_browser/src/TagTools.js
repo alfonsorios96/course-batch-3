@@ -5,20 +5,20 @@ class TagTools {
     static getAllTags(stringVal) {
 
         let regex = new RegExp('<(.|\\n)*?>', 'g');
-        
+                
         return stringVal.match(regex);
     }
 
     static isOpen(stringVal) {
         
-        let regex = new RegExp('<\\s*(\\w)+\\s*>', 'g');
+        let regex = new RegExp('<\\s*([\\w-])+\\s*>', 'g');
         
         return regex.test(stringVal);
     }
     
     static isClose(stringVal) {
         
-        let regex = new RegExp('<\\s*\/\\s*(\\w)+\\s*>', 'g');
+        let regex = new RegExp('<\\s*\/\\s*([\\w-])+\\s*>', 'g');
         
         return regex.test(stringVal);
     }
