@@ -11,35 +11,35 @@ class TagTools {
 
     static isOpen(stringVal) {
         
-        var regex = new RegExp('<\\s*(\\w)+\\s*>', 'g');
+        let regex = new RegExp('<\\s*(\\w)+\\s*>', 'g');
         
         return regex.test(stringVal);
     }
     
     static isClose(stringVal) {
         
-        var regex = new RegExp('<\\s*\/\\s*(\\w)+\\s*>', 'g');
+        let regex = new RegExp('<\\s*\/\\s*(\\w)+\\s*>', 'g');
         
         return regex.test(stringVal);
     }
     
     static isAutoClose(stringVal) {
         
-        var regex = new RegExp('<\\s*([\\w\"\.-=\\s])+\\s*\/\\s*>', 'g');
+        let regex = new RegExp('<\\s*([\\w\"\.-=\\s])+\\s*\/\\s*>', 'g');
         
         return regex.test(stringVal);
     }
     
     static isStyle(stringVal) {
         
-        var regex = new RegExp('(<\\s*style\\s*(.*?)\\s*>)|(<\\s*\/\\s*style\\s*>)', 'g');
+        let regex = new RegExp('(<\\s*style\\s*(.*?)\\s*>)|(<\\s*\/\\s*style\\s*>)', 'g');
         
         return regex.test(stringVal);
     }
     
     static isSingleton(stringVal) {
         
-        var regex = new RegExp('<\\s*((area)|(base)|(br)|(col)|(command)|(embed)|(hr)|(img)|(input)|(keygen)|(link)|(meta)|(param)|(source)|(track)|(wbr))\\s*(.*?)\\s*>', 'g');
+        let regex = new RegExp('<\\s*((area)|(base)|(br)|(col)|(command)|(embed)|(hr)|(img)|(input)|(keygen)|(link)|(meta)|(param)|(source)|(track)|(wbr))\\s*(.*?)\\s*>', 'g');
         
         return regex.test(stringVal);
     }
@@ -68,7 +68,7 @@ class TagTools {
 
     static getAttrs(tag) {
                 
-        var regex = new RegExp("(([\\w-])+=(([\\w])+|('([\\w\\s])+')|(\"([\\w\\s])+\")|))", 'g');
+        let regex = new RegExp("(([\\w-])+=(([\\w])+|('([\\w\\s])+')|(\"([\\w\\s])+\")|))", 'g');
         
         let attrs = tag.match(regex);
         let kv = null;
