@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <link rel="import" href="ul-element.html">
 </head>
     <body>
     <template id="toggleTemplate">
@@ -83,11 +83,11 @@
                 constructor() {
                     super();
                     const shadowRoot = this.attachShadow({mode: 'open'});
-                    const d = document.currentScript.ownerDocument;
-                    const toggleTemplate = d.querySelector('#toggleTemplate');
-                    const ulTemplate = d.querySelector('#ulTemplate');
-                    const tempInstance = d.importNode(toggleTemplate.content, true);
-                    shadowRoot.appendChild(d.importNode(tempInstance, true));
+                    const doc = document.currentScript.ownerDocument;
+                    const toggleTemplate = doc.querySelector('#toggleTemplate');
+                    const ulTemplate = doc.querySelector('#ulTemplate');
+                    const tempInstance = doc.importNode(toggleTemplate.content, true);
+                    shadowRoot.appendChild(doc.importNode(tempInstance, true));
                     this.addEventListener('click', (event) => {
                         const isSelected = this.getAttribute('selected');
                         if(isSelected === 'false') {
