@@ -1,12 +1,12 @@
-
 <template id="myElementTemplate">
-  <style>
-    button {
-      background-color: purple;
-      color: white;
-    }
-  </style>
-  <button>My element button</button>
+    <style>
+        button {
+            background-color: purple;
+            color: white;
+            @apply --my-element;
+        }
+    </style>
+    <button>My element button</button>
 </template>
 
 <script>
@@ -17,7 +17,7 @@
 
       static get observedAttributes() {
         // pain point 1 (attribute / property sync)
-        return ['selected'];
+        return [ 'selected' ];
       }
 
       constructor() {
@@ -38,7 +38,7 @@
 
       attributeChangedCallback(name, oldVal, newVal) {
         // Pain point 1 (attribute / property sync)
-        if(name === 'selected') {
+        if (name === 'selected') {
           this.selected = newVal;
         }
 
@@ -51,7 +51,7 @@
       }
 
       set selected(val) {
-        if(this.selected === val) {
+        if (this.selected === val) {
           return;
         }
         this.setAttribute('selected', val);

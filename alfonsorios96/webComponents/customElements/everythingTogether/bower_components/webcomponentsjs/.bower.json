@@ -1,0 +1,9 @@
+{
+  "name": "webcomponentsjs",
+  "_source": "art://Polymer/webcomponentsjs",
+  "_target": "^2.0.2",
+  "_release": "v2.0.2",
+  "version": "2.0.2",
+  "_originalSource": "webcomponentsjs",
+  "_direct": true
+}

@@ -1,10 +1,21 @@
 <html>
-  <head>
+<head>
     <meta charset="utf-8">
     <title>Under the hoods</title>
+    <script src="bower_components/webcomponentsjs/webcomponents-loader.js"></script>
+    <!-- import apply shim--only required if using mixins -->
+    <link rel="import" href="bower_components/shadycss/apply-shim.html">
     <link rel="import" href="my-element.html">
-  </head>
-  <body>
-    <my-element></my-element>
-  </body>
+    <style>
+        my-element {
+            --my-element: {
+                background-color: yellowgreen;
+                margin-left: 100px;
+            };
+        }
+    </style>
+</head>
+<body>
+<my-element></my-element>
+</body>
 </html>
