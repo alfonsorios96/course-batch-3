@@ -1,0 +1,20 @@
+{
+  "name": "practica_uno",
+  "version": "1.0.0",
+  "description": "practica 1",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run concurrently-serve",
+    "concurrently-serve": "concurrently \"http-server -a localhost -p 3000\" \"open http://localhost:3000/\"",
+    "build": "babel src -d lib"
+  },
+  "author": "Ruben",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "concurrently": "^3.5.1",
+    "http-server": "^0.11.1"
+  }
+}

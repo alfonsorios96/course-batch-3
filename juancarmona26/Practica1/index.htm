@@ -1,0 +1,114 @@
+
+<!DOCTYPE html>
+<html>
+    <style>
+        body {font-family: Arial, Helvetica, sans-serif;}
+        
+        /* The Modal (background) */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            padding-top: 100px; /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+        
+        /* Modal Content */
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+        
+        /* The Close Button */
+        .close {
+            color: #aaaaaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+            .quick-tip {
+        background: black;
+        color: #fff;
+        padding: 5px;
+        cursor: pointer;
+        height: 20px;
+        width: 300px;
+        text-align: center;
+        font-weight: 900;
+        margin-left: 350px;
+
+    }
+    .tip-box {
+    /* change dimensions to be whatever the background image is */
+        height: 50px;
+        width: 200px;
+        background: grey;
+        border: 1px solid black; 
+        position: absolute;
+    }
+        </style>
+        
+<body>
+
+<h1>Pr&aacute;ctica</h1>
+
+<p>Por favor da click en el siguiente texto:</p>
+
+
+
+<div id="optionMenu" >
+        <p id="demo" onclick="createOptionsInOptionMenuDiv()">Dinosaurus</p>    
+</div> 
+
+<div id="optionValue">
+
+</div>
+
+<button id="myBtn">Open Modal</button>
+
+<div class="quick-tip" data-tip="Este es un tooltip." 
+      data-tip-on="false">HOVER HERE!</div>
+
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2>Modal Header</h2>
+    </div>
+    <div class="modal-body">
+      <p>Este es un modal, con cabeza, cuerpo y pies.</p>      
+    </div>
+    <div class="modal-footer">
+      <h3>Modal Footer</h3>
+      <button id="closeButton" onclick="closeModal()">Cerrar</button>
+      <button id="saveChanges">Guardar cambios</button>
+    </div>
+  </div>
+  </div>
+
+ 
+
+  <script src="playWithDOM.js"></script>
+   
+</body>
+</html>
+
+
+  

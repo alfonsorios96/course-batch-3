@@ -1,0 +1,48 @@
+.tooltip-help{
+    display: none;
+}
+.tooltip .tooltip-help{
+    color: red;
+    display: initial;
+}
+
+.dropdown span{
+    border-radius: 17px 17px 17px 17px;
+    -moz-border-radius: 17px 17px 17px 17px;
+    -webkit-border-radius: 17px 17px 17px 17px;
+    border: 1px solid #000000;
+    padding: 6px;
+}
+
+.dropdown > ul{
+    display: none;
+}
+
+.dropdown-active > ul{
+    display: initial;
+}
+
+.tooltip-help{
+    border-radius: 17px 17px 17px 17px;
+    -moz-border-radius: 17px 17px 17px 17px;
+    -webkit-border-radius: 17px 17px 17px 17px;
+    border: 1px solid #000000;
+    margin: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.modal{
+    display: none;
+}
+
+.modal-active{
+    border-radius: 17px 17px 17px 17px;
+    -moz-border-radius: 17px 17px 17px 17px;
+    -webkit-border-radius: 17px 17px 17px 17px;
+    border: 1px solid #000000;
+    margin: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    display: block;
+}

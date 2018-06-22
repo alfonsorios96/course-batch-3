@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+    <title>Widgets dinámicos</title>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" type="text/css" href="estilos.css">
+</head>
+
+<body>
+<div id="principal">
+    <div class="first" id="dropDown">
+        Dropdown | Select
+    </div>
+    <div class="ocultar" id="opciones">
+        <div class="opcion">
+            Primera Opción
+            <hr>
+        </div>
+        <div class="opcion">
+            Segunda Opción
+            <hr>
+        </div>
+        <div class="opcion">
+            Tercera Opción
+            <hr>
+        </div>
+    </div>
+    <button id="launch">Launch Modal</button>
+    <div class="tootip" id="tooltip">Hover over me <span class="tooltipText" id="tooltipText">tooltip</span></div>
+</div>
+<div class="modalContainer" id="modalContainer">
+</div>
+<div class="centrar" id="modal">
+    <div class="headerDiv" id="headerDiv">
+        Header
+    </div>
+    <div class="bodyDiv" id="bodyDiv">
+
+    </div>
+    <div class="footerDiv" id="footerDiv">
+        <button id="close">close</button>
+    </div>
+</div>
+<script src="main.js"></script>
+</body>
+</html>

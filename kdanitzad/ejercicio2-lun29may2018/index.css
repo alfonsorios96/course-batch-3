@@ -1,0 +1,42 @@
+#mytable{
+	border: pink solid 2px;
+}
+#container{
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: rgba(0,0,0,0.2);
+	z-index: 9999;
+	-webkit-transition: opacity 400ms ease-in;
+	-moz-transition: opacity 400ms ease-in;
+	transition: opacity 400ms ease-in;
+	opacity:1;
+	pointer-events: auto;
+}
+#modal{
+	width: 600px;
+	height: 200px;
+	position: relative;
+	margin: 10% auto;
+	padding: 5px 20px 13px 20px;
+	border-radius: 10px;
+	border : 2px solid #B3B3B3;
+	background: #FFFFFF;
+}
+
+#modal_footer, #modal_title{
+	font-size: 15px;
+	color: black;
+	background: yellow;
+}
+#container{
+	display: none;
+}
+table tr:nth-child(2){
+	background-color: yellow;
+}
+table tr{
+	background-color: gray;
+}

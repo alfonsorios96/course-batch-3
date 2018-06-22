@@ -1,0 +1,40 @@
+.selectorStyle {
+    padding: 1px;
+    text-align: center;
+    height: 20px;
+    width: 60px;
+    border: 1px;
+    border-style: solid;
+    border-color: blue;
+}
+
+.display-none {
+    display: none;
+}
+
+.contenido-modal {
+    margin: auto;
+    width: 50%;
+    height: 25%;
+    border: 3px solid green;
+    padding: 10px;
+}
+
+.titulo-modal {
+    text-align: center;
+    font-size: 20px;
+    padding: 15px;
+}
+
+.texto-modal {
+    text-align: justify;
+    font-size: 15px;
+    padding: 5px;
+}
+
+.boton-cerrar {
+    height: 30px;
+    width: 150px;
+    padding: 5px;
+    text-align: center;
+}
