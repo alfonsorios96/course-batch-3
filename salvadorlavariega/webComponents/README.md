@@ -7,3 +7,6 @@
 > node main.js
 
 ```
+> Para ver el proyecto abre este link:
+ 
+ * [go to Web Component](http://localhost:3000/) - Web component
