@@ -8,3 +8,6 @@ mledesmac/practica_2018_06_04/node_modules
 mledesmac/**/package-lock.json
 **/yarn.lock
 
+chrigarc/ejercicios_jest/factorial/node_modules/
+chrigarc/ejercicios_jest/factorial/package-lock.json
+
