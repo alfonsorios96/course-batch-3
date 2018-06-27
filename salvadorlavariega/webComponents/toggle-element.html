@@ -88,7 +88,6 @@
                     const ulTemplate = d.querySelector('#ulTemplate');
                     const tempInstance = d.importNode(toggleTemplate.content, true);
                     shadowRoot.appendChild(d.importNode(tempInstance, true));
-
                     this.addEventListener('click', (event) => {
                         const isSelected = this.getAttribute('selected');
                         if(isSelected === 'false') {
