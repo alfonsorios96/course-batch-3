@@ -1,11 +1,23 @@
 <html>
-  <head>
+<head>
     <meta charset="utf-8">
     <title>Under the hoods</title>
     <link rel="import" href="my-element.html">
-  </head>
-  <body>
-    <my-element></my-element>
-  </body>
+</head>
+<body>
+<div id="container">
+    <other-component text="Hola !!"></other-component>
+</div>
+<script>
+  const element = document.querySelector('other-component');
+  document.querySelector('#container').addEventListener('one-event', (event) => {
+    event.stopPropagation();
+  });
+  document.querySelector('body').addEventListener('one-event', (event) => {
+    console.log(event.composed);
+    console.log(event.composedPath());
+  });
+</script>
+</body>
 </html>
 
