@@ -1,0 +1,125 @@
+<template>
+    <slot></slot>
+</template>
+
+<script>
+  ((customElements, document) => {
+    'use strict';
+
+    class DomRepeat extends HTMLElement {
+
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        this._templatize();
+      }
+
+      get items() {
+        return this._validateInputData(this.getAttribute('items'));
+      }
+
+      set items(newValue) {
+        this.setAttribute('items', JSON.stringify(newValue));
+      }
+
+      static get observedAttributes() {
+        return [ 'items' ];
+      }
+
+      attributeChangedCallback(name, oldValue, newValue) {
+        switch (name) {
+          case 'items':
+            const template = this.querySelector('template');
+            this._render(template.parentNode.childNodes);
+            break;
+        }
+      }
+
+      _validateInputData(stringData) {
+        const array = JSON.parse(stringData);
+        if (Array.isArray(array) === true) {
+          return array;
+        } else {
+          throw new Error('The data for items must be array');
+        }
+      }
+
+      _templatize() {
+        const shadowRoot = this.attachShadow({mode: 'open'});
+        const template = document.currentScript.ownerDocument.querySelector('template');
+        const templateContent = document.importNode(template.content, true);
+        shadowRoot.appendChild(templateContent);
+
+        const slot = this.shadowRoot.querySelector('slot');
+        const nodes = slot.assignedNodes();
+        this._render(nodes);
+      }
+
+      _render(nodes) {
+        for (const node of nodes) {
+          if (node.localName === 'template' && this.shadowRoot) {
+            const htmlTemplate = node.innerHTML;
+            this.shadowRoot.innerHTML = '';
+            for (const item of this.items) {
+              this.shadowRoot.innerHTML += this._bindData(htmlTemplate, item);
+            }
+            this.dispatchEvent(new CustomEvent('dom-changed', {
+              bubbles: true,
+              composed: true
+            }));
+            break;
+          }
+        }
+      }
+
+      _bindData(html, item) {
+        const expressions = html.match(/\[\[([a-zA-Z\_/.]*\]\])/g);
+        return this._replaceExpressions(html, expressions, item);
+      }
+
+      _replaceExpressions(html, expressions, item) {
+        let htmlStringRendered = html;
+
+        try{
+            if(expressions){
+                for (const expression of expressions) {
+                    htmlStringRendered = htmlStringRendered.replace(expression, this._getValueNested(expression, item));
+                }
+            }
+        }catch(ex){
+            console.log(ex);
+            console.log(expressions);
+        }
+
+
+        return htmlStringRendered;
+      }
+
+      _getValueNested(expression, item) {
+        let newValue = '';
+        let expressionCleaned = expression.replace('[[', '');
+        expressionCleaned = expressionCleaned.replace(']]', '');
+        const treeExpressionNested = expressionCleaned.split('.');
+        newValue = this._recursiveValue(item, treeExpressionNested);
+        if(typeof  newValue === 'undefined'){
+            newValue = expression;
+        }
+        return newValue;
+      }
+
+      _recursiveValue(item, tree) {
+        if (tree.length === 0) {
+          return item;
+        } else {
+          const index = tree[ 0 ];
+          tree.splice(0, 1);
+          return this._recursiveValue(item[ index ], tree);
+        }
+      }
+    }
+
+    customElements.define('dom-repeat', DomRepeat);
+  })(window.customElements, document);
+</script>
