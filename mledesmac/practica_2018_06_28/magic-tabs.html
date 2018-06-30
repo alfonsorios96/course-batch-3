@@ -1,0 +1,162 @@
+<template>
+    <style>
+        #tab-title{
+            width: 50%;
+        }
+        #tab-title > div{
+            display: inline-block;
+            border-top-left-radius: 50px 20px;
+            text-align: center;
+        }
+
+        .selectedTab{
+            color: white;
+            background-color: black;
+        }
+
+        #tab-content1{
+            border: 1px solid;
+        }
+    </style>
+    <div id="forward" hidden>Anterior</div>
+    <div id="tab-title"></div>
+    <div id="next" hidden>Siguiente</div>
+    <div id="tab-content1"></div>
+</template>
+
+<script>
+    (() => {
+        class MagicTabs extends HTMLElement {
+            constructor() {
+                super();
+
+                this._change = this._change.bind(this);
+                const template = document.currentScript.ownerDocument.querySelector('template');
+                const shadowRoot = this.attachShadow({
+                    mode: 'open'
+                });
+
+                this.widthParent = 100;
+                shadowRoot.appendChild(template.content.cloneNode(true));
+            }
+
+            connectedCallback() {
+                this.tabValues = JSON.parse(this.getAttribute('tabs'));
+                this._setTabs(this);
+            }
+
+            get tabs(){
+                return this.getAttribute('tabs');
+            }
+
+            set tabs(tabs){
+                this.setAttribute('tabs', tabs);
+            }
+
+            static get observedAttributes() {
+                return ['tabs'];
+            }
+
+            attributeChangedCallback(name, oldValue, newValue) {
+                if(name === 'tabs'){
+                    this.tabValues = JSON.parse(newValue);
+                    this._setTabs();
+                }else{
+                    console.error('Exception');
+                }
+            }
+
+            // Construct the tabs section
+            _setTabs(){
+                // With section
+                this.withTab = '';
+                let sliceTabs = this.tabValues;
+                const lengthData = this.tabValues.length;
+                let remainingNext = Math.ceil(lengthData / 4);
+                let remainingForward = 0;
+                let nextValue = 4;
+                let backValue = 0;
+
+                if(lengthData < 5){
+                   this.withTab = (this.widthParent / lengthData) + "%";
+                }
+
+                if(lengthData > 5){
+                    const nextButton = this.shadowRoot.querySelector('#next');
+                    nextButton.removeAttribute('hidden');
+
+                    const forwardButton = this.shadowRoot.querySelector('#forward');
+
+                    // Init the tabs section
+                    this._drawTabs(this.tabValues.slice(0,4));
+
+                    nextButton.addEventListener('click', () => {
+                        sliceTabs = this.tabValues.slice(nextValue, nextValue + 4);
+                        this._drawTabs(sliceTabs);
+
+                        nextValue = nextValue + 4;
+                        backValue = backValue + 4;
+
+                        remainingNext = remainingNext - 1;
+                        remainingForward = remainingForward + 1; // We moved one section
+                        forwardButton.removeAttribute('hidden');
+
+                        if (remainingNext === 1 ) {
+                            nextButton.setAttribute('hidden', '');
+                            remainingNext =  Math.ceil(lengthData / 4); // Init
+                        }
+                    });
+
+                    forwardButton.addEventListener('click', () => {
+                        sliceTabs = this.tabValues.slice(backValue - 4 ,backValue);
+                        this._drawTabs(sliceTabs);
+
+                        backValue = backValue - 4;
+                        nextValue = nextValue - 4;
+
+                        remainingForward = remainingForward -1;
+                        nextButton.removeAttribute('hidden');
+
+                        if(remainingForward === 0){
+                            forwardButton.setAttribute('hidden', '');
+                            remainingForward  = 0; //Init
+                        }
+                    });
+                }else{
+                    this._drawTabs(sliceTabs);
+                }
+            }
+
+            // Draw Tabs
+            _drawTabs(tabs){
+                this.shadowRoot.querySelector('#tab-title').textContent = '';
+                let indexElement = 1;
+                for(const element of tabs){
+                    const tab = document.createElement('div');
+                    tab.innerHTML = element.tab.toUpperCase();
+                    tab.setAttribute('index-element', indexElement.toString());
+                    tab.setAttribute('style', 'width:' + this.withTab);
+                    tab.addEventListener('click',this._change);
+
+                    if(indexElement === 1){
+                        tab.setAttribute('class','selectedTab')
+                    }
+
+                    this.shadowRoot.querySelector('#tab-title').appendChild(tab);
+                    indexElement++;
+                }
+
+                this.shadowRoot.querySelector('#tab-content1').innerHTML = this.tabValues[0].content;
+            }
+
+            // Change content
+            _change(event){
+                this.shadowRoot.querySelector('.selectedTab').classList.remove('selectedTab');
+                event.target.classList.add('selectedTab');
+                const indexElement = event.target.getAttribute('index-element');
+                this.shadowRoot.querySelector('#tab-content1').innerHTML = this.tabValues[indexElement -1].content;
+            }
+        }
+        customElements.define('magic-tabs', MagicTabs);
+    })();
+</script>
