@@ -1,0 +1,17 @@
+{
+  "name": "demo",
+  "dependencies": {
+    "@polymer/app-route": "^3.0.0-pre.21",
+    "@polymer/iron-ajax": "^3.0.0-pre.21",
+    "@polymer/iron-pages": "^3.0.0-pre.21",
+    "@polymer/paper-button": "^3.0.0-pre.21",
+    "@polymer/paper-input": "^3.0.0-pre.21",
+    "@polymer/polymer": "^3.0.0",
+    "google-chart-polymer-3": "^3.0.1",
+    "redux": "^4.0.0"
+  },
+  "devDependencies": {
+    "@webcomponents/webcomponentsjs": "^2.0.0",
+    "wct-browser-legacy": "^1.0.0"
+  }
+}
