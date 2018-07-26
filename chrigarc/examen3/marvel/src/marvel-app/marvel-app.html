@@ -1,0 +1,66 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+
+<dom-module id="marvel-app">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <h2>Lista de personajes Marvel Comics</h2>
+    <iron-ajax id="request"
+               auto
+               url="https://gateway.marvel.com:443/v1/public/characters?apikey=bf8f1a982b95bc85e84a6d40e77d3f00&ts=1&hash=4ca4a7943e7fa9088f2babbcfee9a9b1",
+               handle-as="json"
+               loading="{{cargando}}"
+               on-response="handleResponse"></iron-ajax>
+    <div hidden$="[[!cargando]]">Estamos cargando datos...</div>
+    <ul id="lista de encuestas">
+      <dom-repeat items="[[characters]]">
+        <template>
+          <li>
+            <div>
+              <h4>[[item.name]]</h4>
+              <img src="[[item.thumbnail.path]]/portrait_xlarge.[[item.thumbnail.extension]]" alt="">
+              <p>[[item.description]]</p>
+              <h5>Comics</h5>
+              <dom-repeat items="[[item.comics.items]]" as="comic">
+                <template>
+                  <li>[[comic.name]]</li>
+                </template>
+              </dom-repeat>
+            </div>
+          </li>
+        </template>
+      </dom-repeat>
+    </ul>
+  </template>
+
+  <script>
+    /**
+     * @customElement
+     * @polymer
+     */
+    class MarvelApp extends Polymer.Element {
+        static get is() {
+            return 'marvel-app';
+        }
+
+        static get properties() {
+            return {
+                characters: {
+                    type: Object,
+                    value: [],
+                    notify: true
+                }
+            };
+        }
+
+        handleResponse(event){
+            this.characters = event.detail.response.data.results;
+        }
+    }
+    window.customElements.define(MarvelApp.is, MarvelApp);
+  </script>
+</dom-module>
