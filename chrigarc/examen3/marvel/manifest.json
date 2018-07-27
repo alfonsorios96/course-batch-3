@@ -1,0 +1,6 @@
+{
+  "name": "marvel",
+  "short_name": "marvel",
+  "start_url": "/",
+  "display": "standalone"
+}
