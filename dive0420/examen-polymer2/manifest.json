@@ -1,0 +1,7 @@
+{
+  "name": "examen-list",
+  "short_name": "examen-list",
+  "description": "lista de super heroes",
+  "start_url": "/",
+  "display": "standalone"
+}
