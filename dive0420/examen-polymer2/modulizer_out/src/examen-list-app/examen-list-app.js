@@ -1,8 +1,8 @@
-import { PolymerElement } from '../../../../@polymer/polymer/polymer-element.js';
-import '../../../../@polymer/iron-ajax/iron-ajax.js';
-import '../../../../@polymer/paper-input/paper-input.js';
-import '../../../../@polymer/paper-button/paper-button.js';
-import { html } from '../../../../@polymer/polymer/lib/utils/html-tag.js';
+import { PolymerElement } from '@polymer/polymer/polymer-element.js';
+import '@polymer/iron-ajax/iron-ajax.js';
+import '@polymer/paper-input/paper-input.js';
+import '@polymer/paper-button/paper-button.js';
+import { html } from '@polymer/polymer/lib/utils/html-tag.js';
 /**
  * @customElement
  * @polymer
@@ -15,10 +15,6 @@ class ExamenListApp extends PolymerElement {
       }
       :host {
         display: block;
-      }
-
-      .characterProfile{
-        padding: 10px;
       }
 
       ul{
@@ -73,10 +69,10 @@ class ExamenListApp extends PolymerElement {
     <h2>Hello [[prop1]]!</h2>
     <paper-input always-float-label="" label="Hero Name" id="heroName"></paper-input>
     <paper-button toggles="" raised="" class="green" on-click="searchHeroes">search</paper-button>
-
+    <paper-input always-float-label="" label="Filter" value="{{filterVal::input}}"></paper-input>
     <ul id="characters" class="grid-container">
       <template is="dom-if" if="[[data.length]]">
-        <template is="dom-repeat" items="[[data]]">
+        <template id="list" is="dom-repeat" items="[[data]]" filter="{{_filter(filterVal)}}" observe="name">
           <li>
             <div class="grid-items-container-border">
               <div class="grid-items-container">
@@ -143,6 +139,16 @@ class ExamenListApp extends PolymerElement {
   searchHeroes(){
       const input = this.$.heroName;
       this.getCharacters(input.value);
+  }
+
+  _filter(startWith) {
+      return (item) => {
+          if (!startWith) return true;
+          if (!item) return false;
+          const name = item.name.toLowerCase();
+          const search = startWith.toLowerCase();
+          return name && ~ name.indexOf(search);
+      };
   }
 }
 
