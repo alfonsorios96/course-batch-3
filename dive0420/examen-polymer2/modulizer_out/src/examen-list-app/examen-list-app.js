@@ -23,8 +23,7 @@ class ExamenListApp extends PolymerElement {
 
       .grid-container {
         display: grid;
-        grid-template-columns: auto auto auto;
-        margin: 10px;
+        grid-template-columns: auto;
       }
 
       .grid-items-container-border {
@@ -34,16 +33,19 @@ class ExamenListApp extends PolymerElement {
 
       .grid-items-container {
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        padding: 20px;
+        grid-template-columns: 1fr 6fr;
+        padding: 20px 0px 0px 20px;
       }
-
-      .grid-item-image {
-        align-content: center;
+      
+      .grid-items-info {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
       }
-
+      
       .grid-item-comic {
-        margin: 10px;
+        display: grid;
+        grid-template-columns: auto;
       }
 
       .grid-item-name {
@@ -51,15 +53,24 @@ class ExamenListApp extends PolymerElement {
         font-size: larger;
         color: #0b8043;
       }
+      
+      .item-dodified {
+        font-family: 'Roboto', 'Noto', sans-serif;
+        font-size: smaller;
+        color: #904a0f;
+      }
 
       .grid-item-description {
         font-family: 'Roboto', 'Noto', sans-serif;
-        font-size: smaller;
+        font-size: medium;
         color: #904a0f;
         margin-top: 10px;
       }
 
       .comics-list {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        justify-content: space-between;
         font-family: "Comic Sans MS", "Century Schoolbook L", serif;
         font-size: small;
         color: #904a0f;
@@ -76,26 +87,34 @@ class ExamenListApp extends PolymerElement {
           <li>
             <div class="grid-items-container-border">
               <div class="grid-items-container">
-                <div class="grid-item-image">
-                  <picture>
-                    <img src="[[item.thumbnail.path]]/portrait_xlarge.jpg" alt="[[item.name]]">
-                  </picture>
-                </div>
-                <div class="grid-item-name">
-                  <span>[[item.name]]</span>
-                  <div class="grid-item-description">
-                    [[item.description]]
+                  <div>
+                      <picture>
+                          <img src="[[item.thumbnail.path]]/portrait_xlarge.jpg" alt="[[item.name]]">
+                      </picture>
+                      <div class="grid-item-name">
+                          <span>ID: [[item.id]]</span>
+                      </div>
                   </div>
-                </div>
-
-              </div>
-              <div class="grid-item-comic">
-                <h1 class="grid-item-name">Comics</h1>
-                <template is="dom-repeat" items="[[item.comics.items]]">
-                  <ul class="comics-list">
-                    <li>[[item.name]]</li>
-                  </ul>
-                </template>
+                  <div class="grid-items-info">
+                      <div class="grid-item-name">
+                          <span>Name: [[item.name]]</span>
+                      </div>
+                       <div class="item-dodified">
+                          Modified: [[item.modified]]
+                      </div>
+                      <div class="grid-item-description">
+                          [[item.description]]
+                      </div>
+                      
+                      <div class="grid-item-comic">
+                          <h1 class="grid-item-name">Comics</h1>
+                          <ul class="comics-list">
+                          <template is="dom-repeat" items="[[item.comics.items]]">
+                              <li>[[item.name]]</li>
+                          </template>
+                          </ul>
+                      </div>
+                  </div>
               </div>
             </div>
 
