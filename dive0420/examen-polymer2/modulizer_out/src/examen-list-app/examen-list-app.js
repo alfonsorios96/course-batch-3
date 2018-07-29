@@ -75,15 +75,38 @@ class ExamenListApp extends PolymerElement {
         font-size: small;
         color: #904a0f;
       }
+      .options-container{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+      .options-container-search, .options-container-filter {
+        padding: 20px;
+      }
+      
+      
 
     </style>
     <h2>Hello [[prop1]]!</h2>
-    <paper-input always-float-label="" label="Hero Name" id="heroName"></paper-input>
-    <paper-button toggles="" raised="" class="green" on-click="searchHeroes">search</paper-button>
-    <paper-input always-float-label="" label="Filter" value="{{filterVal::input}}"></paper-input>
+    <div class="options-container">
+        <div class="options-container-search">
+            <paper-input always-float-label="" label="Hero Name" id="heroName"></paper-input>
+            <paper-button toggles="" raised="" class="green" on-click="searchHeroes">search</paper-button>
+        </div>
+        <template is="dom-if" if="[[data.length]]">
+
+            <div class="options-container-filter">
+                <paper-input always-float-label="" label="Filter" value="{{filterVal::input}}"></paper-input>
+                <select value="{{sortVal::change}}">  
+                   <option value="id">ID</option>
+                   <option value="name">Name</option>
+                   <option value="modified">Modified Date</option>
+                </select>
+            </div>
+        </template>  
+    </div>
     <ul id="characters" class="grid-container">
       <template is="dom-if" if="[[data.length]]">
-        <template id="list" is="dom-repeat" items="[[data]]" filter="{{_filter(filterVal)}}" observe="name">
+        <template id="list" is="dom-repeat" items="[[data]]" filter="{{_filter(filterVal)}}" sort="{{_sort(sortVal)}}" observe="name">
           <li>
             <div class="grid-items-container-border">
               <div class="grid-items-container">
@@ -169,6 +192,26 @@ class ExamenListApp extends PolymerElement {
           return name && ~ name.indexOf(search);
       };
   }
+
+  _sort (sortVal) {
+      switch(sortVal) {
+          case 'name':
+              return (a, b) => {
+                  if (a.name === b.name) return 0;
+                  return a.name < b.name ? -1 : 1;
+              };
+          case 'id':
+              return (a, b) => {
+                  if (a.id === b.id) return 0;
+                  return a.id < b.id ? -1 : 1;
+              };
+          case 'modified':
+              return (a, b) => {
+                  if (a.modified === b.modified) return 0;
+                  return a.modified < b.modified ? -1 : 1;
+              };
+      }
+    }
 }
 
 window.customElements.define(ExamenListApp.is, ExamenListApp);
