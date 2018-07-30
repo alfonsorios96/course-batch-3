@@ -14,7 +14,9 @@
     "@polymer/iron-selector": "^3.0.0-pre.21",
     "@polymer/paper-button": "^3.0.0-pre.18",
     "@polymer/paper-input": "^3.0.0-pre.18",
-    "@polymer/polymer": "^3.0.0"
+    "@polymer/polymer": "^3.0.0",
+    "polymer-redux": "^1.0.5",
+    "redux": "^4.0.0"
   },
   "devDependencies": {
     "wct-browser-legacy": "^1.0.1",

@@ -14,5 +14,13 @@
   </head>
   <body>
     <examen-list-app></examen-list-app>
+    <script>
+        // TODO: Use production redux bundle (either dist or uglified) later.
+        // Will either need to integrate loose-envify into build process or
+        // figure out some other way.
+        window.process = window.process || {};
+        process.env = process.env || {};
+        process.env.NODE_ENV = "development";
+    </script>
   </body>
 </html>
