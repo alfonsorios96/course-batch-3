@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Mi página google</title>
+</head>
+<body>
+	<input id="search" type="text" name="search" placeholder="Buscador">
+	<button id="button">Voy a tener suerte</button>
+
+	<script type="text/javascript">
+		const getQuery = string => {
+			return string.replace(' ', '+');
+		};
+		document.querySelector('#button').addEventListener('click', event => {
+			const query = document.querySelector('#search').value;
+				document.location = `https://www.google.com/search?q=${getQuery(query)}`;
+		});
+	</script>
+</body>
+</html>
